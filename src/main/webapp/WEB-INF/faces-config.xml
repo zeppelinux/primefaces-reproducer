@@ -27,4 +27,8 @@
         <converter-for-class>java.lang.Enum</converter-for-class>
         <converter-class>javax.faces.convert.EnumConverter</converter-class>
     </converter>
+    <converter>
+        <converter-for-class>com.test.repro.Message</converter-for-class>
+        <converter-class>com.test.repro.MessagesConverter</converter-class>
+    </converter>
 </faces-config>
