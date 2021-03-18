@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<scan>
+    <packages>
+        <package>com.test</package>
+        <package>org.apache.deltaspike</package>
+        <package>org.primefaces</package>
+    </packages>
+</scan>

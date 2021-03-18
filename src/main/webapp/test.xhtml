@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="main.xhtml">
+
+
+    <ui:define name="content">
+
+        <div style="width: 500px; margin: 0 auto 0 auto;">
+            <h:form id="mainForm">
+                <p:dataTable var="_msg" value="#{messagesView.model}" paginator="true" rows="50"
+                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                             rowsPerPageTemplate="50,100,500,1000" stripedRows="true" rowKey="#{_msg.id}"
+                             size="small" stickyHeader="true" id="messagesTable" lazy="true" resizableColumns="true"
+                             selection="#{messagesView.selectedMessages}">
+                    <f:facet name="header">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            <div>
+                                <p:commandButton id="toggler" type="button" value="Columns" icon="pi pi-align-justify" style="float:right;margin-top:-40px;margin-right:10px;"/>
+                                <p:columnToggler datasource="messagesTable" trigger="toggler"/>
+                            </div>
+                        </div>
+                    </f:facet>
+
+                    <p:ajax event="rowSelectCheckbox"/>
+                    <p:ajax event="rowUnselectCheckbox"/>
+                    <p:ajax event="rowSelect"/>
+                    <p:ajax event="rowUnselect"/>
+
+                    <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+
+                    <p:column headerText="Id" sortBy="#{_msg.id}" filterBy="#{_msg.id}" >
+                        <h:outputText value="#{_msg.id}"/>
+                    </p:column>
+                    <p:column headerText="Text" sortBy="#{_msg.text}" filterBy="#{_msg.text}">
+                        <h:outputText value="#{_msg.text}"/>
+                    </p:column>
+                </p:dataTable>
+
+                <p:dialog header="Message Details" widgetVar="messageDialog" modal="true" resizable="false" width="600px">
+                    <p:outputPanel id="messageDetail" style="text-align:center;">
+                        <h:outputText value="Id: #{messagesView.selectedMessage.id}"/>
+                    </p:outputPanel>
+                </p:dialog>
+
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
