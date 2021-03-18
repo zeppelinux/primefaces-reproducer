@@ -146,9 +146,33 @@
                     <artifactId>tomee-maven-plugin</artifactId>
                     <version>${tomee.version}</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.tomee.maven</groupId>
+                    <artifactId>tomee-maven-plugin</artifactId>
+                    <version>${tomee.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
+            <plugin>
+                <groupId>org.apache.tomee.maven</groupId>
+                <artifactId>tomee-maven-plugin</artifactId>
+                <configuration>
+                    <tomeeVersion>${tomee.version}</tomeeVersion>
+                    <tomeeClassifier>webprofile</tomeeClassifier>
+                    <debug>false</debug>
+                    <debugPort>5005</debugPort>
+                    <tomeeHttpPort>8081</tomeeHttpPort>
+                    <tomeeShutdownPort>8006</tomeeShutdownPort>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.inject</groupId>
+                        <artifactId>javax.inject</artifactId>
+                        <version>1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
