@@ -6,6 +6,7 @@ import org.apache.deltaspike.core.api.scope.ViewAccessScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.List;
 
 @Named
 @ViewAccessScoped
@@ -14,7 +15,7 @@ public class MessagesView implements Serializable {
     @Inject
     LazyMessagesDataModel model;
 
-    private Message[] selectedMessages;
+    private List<Message> selectedMessages;
 
     private Message selectedMessage;
 
@@ -23,16 +24,11 @@ public class MessagesView implements Serializable {
         return model;
     }
 
-    public Message[] getSelectedMessages() {
+    public List<Message> getSelectedMessages() {
         return selectedMessages;
     }
 
-    public void setSelectedMessages(Message[] selectedMessages) {
-        if (selectedMessages.length != 0 && selectedMessages[0] == null) {
-            System.out.println("Array with null elements provided as selection!");
-            return;
-        }
-
+    public void setSelectedMessages(List<Message> selectedMessages) {
         this.selectedMessages = selectedMessages;
     }
 
